@@ -601,6 +601,8 @@ export default function App() {
                   <a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={` w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white ${social.color} transition-all duration-300 hover:scale-110 hover:-translate-y-1 shadow-lg relative overflow-hidden group`}
                     style={{ animationDelay: `${3000 + index * 200}ms` }}
                   >
@@ -1132,6 +1134,8 @@ export default function App() {
                       <a
                         key={social.label}
                         href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className={`w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110 hover:-translate-y-1 shadow-lg ${social.color} relative overflow-hidden group`}
                       >
                         <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></div>
@@ -1206,7 +1210,7 @@ export default function App() {
                 </p>
               </div>
 
-              <div className="flex justify-center space-x-6 mb-8">
+              {/* <div className="flex justify-center space-x-6 mb-8">
                 {[
                   { icon: Github, href: "#", label: "GitHub" },
                   { icon: Linkedin, href: "#", label: "LinkedIn" },
@@ -1220,7 +1224,7 @@ export default function App() {
                     <social.icon className="h-6 w-6" />
                   </a>
                 ))}
-              </div>
+              </div> */}
 
               <div className="border-t border-gray-800 pt-8">
                 <p className="text-gray-400">
