@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import {
   ChevronDown,
   Menu,
@@ -21,12 +21,18 @@ import {
   Star,
   Sparkles,
   Zap,
-} from "lucide-react"
-import { Button } from "../src/components/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../src/components/card"
-import { Badge } from "../src/components/badge"
-import { Input } from "../src/components/input"
-import { Textarea } from "../src/components/textarea"
+} from "lucide-react";
+import { Button } from "../src/components/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../src/components/card";
+import { Badge } from "../src/components/badge";
+import { Input } from "../src/components/input";
+import { Textarea } from "../src/components/textarea";
 
 const LeetCodeIcon = () => (
   <svg
@@ -43,48 +49,61 @@ const LeetCodeIcon = () => (
 );
 
 // Mock data (in real app, this would come from Django API)
+import tourBuilderImg from "./assets/tourbuilder.png";
+import mediFlowImg from "./assets/mediflow.png";
+import quizImg from "./assets/quiz.png";
+import ideaForgeImg from "./assets/ideaforge.png";
+
 const mockProjects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with payment integration and real-time inventory management",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
-    tech_stack: ["React", "Django", "PostgreSQL", "Stripe", "Redis"],
-    live_url: "https://example.com",
-    github_url: "https://github.com/example",
+    title: "Tour Builder App",
+    description:
+      "Interactive tool with live editing experience. Includes tour steps, dynamic editor, responsive UI, animations, and live preview.",
+    tech_stack: ["TypeScript", "JavaScript", "Tailwind CSS"],
     featured: true,
+    image: tourBuilderImg,
+    live_link: "https://tour-builder.netlify.app/",
+    github_link: "https://github.com/saqibbbbb/tour_builder",
+    year: "2025",
   },
   {
     id: 2,
-    title: "Task Management App",
-    description: "Collaborative task management with real-time updates and team collaboration features",
-    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop",
-    tech_stack: ["Next.js", "Django REST", "WebSocket", "Redis", "Docker"],
-    live_url: "https://example.com",
-    github_url: "https://github.com/example",
+    title: "MediFlowAI App",
+    description:
+      "AI-powered platform for smart healthcare: symptom-based queue, ambulance tracking, vacancy detection, AI scheduler, and chatbot.",
+    tech_stack: ["HTML5", "CSS", "JavaScript"],
     featured: true,
+    image: mediFlowImg,
+    live_link: "https://mediflow1.netlify.app/",
+    github_link: "https://github.com/saqibbbbb/MediFlow",
+    year: "2025",
   },
   {
     id: 3,
-    title: "AI Chat Application",
-    description: "AI-powered chat application with natural language processing and voice recognition",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop",
-    tech_stack: ["React", "Python", "OpenAI", "FastAPI", "WebRTC"],
-    live_url: "https://example.com",
-    github_url: "https://github.com/example",
-    featured: false,
+    title: "Quiz App",
+    description:
+      "Multiple-choice quiz app with timer, score tracking, dynamic questions, and responsive UI.",
+    tech_stack: ["React.js", "Tailwind CSS"],
+    featured: true,
+    image: quizImg,
+    live_link: "https://qu1z1.netlify.app/",
+    github_link: "https://github.com/saqibbbbb/quiz_app",
+    year: "2025",
   },
   {
     id: 4,
-    title: "Social Media Dashboard",
-    description: "Analytics dashboard for social media management with real-time data visualization",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
-    tech_stack: ["Vue.js", "Django", "Chart.js", "PostgreSQL"],
-    live_url: "https://example.com",
-    github_url: "https://github.com/example",
-    featured: false,
+    title: "IdeaForge",
+    description:
+      "Frontend-only platform to explore and share startup ideas. Includes login/register, clean UI, and responsive homepage.",
+    tech_stack: ["HTML", "CSS", "JavaScript"],
+    featured: true,
+    image: ideaForgeImg,
+    live_link: "https://papaya-croquembouche-4e1119.netlify.app/",
+    github_link: "https://github.com/saqibbbbb/ideaforge",
+    year: "2025",
   },
-]
+];
 
 const mockSkills = {
   frontend: [
@@ -108,38 +127,42 @@ const mockSkills = {
     { name: "Linux", level: 85, icon: "🐧" },
     { name: "Figma", level: 70, icon: "🎨" },
   ],
-}
+};
 
 const mockExperience = [
   {
     year: "2024",
     title: "Senior Full Stack Developer",
     company: "Tech Innovations Inc.",
-    description: "Led development of scalable web applications using Django and React, mentored junior developers",
+    description:
+      "Led development of scalable web applications using Django and React, mentored junior developers",
     duration: "Present",
   },
   {
     year: "2023",
     title: "Full Stack Developer",
     company: "Digital Solutions Ltd.",
-    description: "Built responsive web applications and RESTful APIs, improved system performance by 40%",
+    description:
+      "Built responsive web applications and RESTful APIs, improved system performance by 40%",
     duration: "1 year",
   },
   {
     year: "2022",
     title: "Frontend Developer",
     company: "Creative Agency",
-    description: "Developed modern user interfaces and collaborated with design teams on UX improvements",
+    description:
+      "Developed modern user interfaces and collaborated with design teams on UX improvements",
     duration: "1 year",
   },
   {
     year: "2021",
     title: "Junior Developer",
     company: "StartUp Hub",
-    description: "Started my journey in web development, learned modern frameworks and best practices",
+    description:
+      "Started my journey in web development, learned modern frameworks and best practices",
     duration: "1 year",
   },
-]
+];
 
 const navigationItems = [
   { id: "home", label: "Home", icon: Home },
@@ -147,48 +170,62 @@ const navigationItems = [
   { id: "projects", label: "Projects", icon: Briefcase },
   { id: "skills", label: "Skills", icon: Code },
   { id: "contact", label: "Contact", icon: MessageCircle },
-]
+];
 
 // Enhanced Typing Effect Hook with Looping
-const useTypingEffect = (text, typingSpeed = 100, pauseDuration = 2000, deletingSpeed = 50) => {
-  const [displayText, setDisplayText] = useState("")
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [isPaused, setIsPaused] = useState(false)
+const useTypingEffect = (
+  text,
+  typingSpeed = 100,
+  pauseDuration = 2000,
+  deletingSpeed = 50
+) => {
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(
       () => {
         if (isPaused) {
-          setIsPaused(false)
-          setIsDeleting(true)
-          return
+          setIsPaused(false);
+          setIsDeleting(true);
+          return;
         }
 
         if (isDeleting) {
           if (displayText.length > 0) {
-            setDisplayText((prev) => prev.slice(0, -1))
+            setDisplayText((prev) => prev.slice(0, -1));
           } else {
-            setIsDeleting(false)
-            setCurrentIndex(0)
+            setIsDeleting(false);
+            setCurrentIndex(0);
           }
         } else {
           if (currentIndex < text.length) {
-            setDisplayText((prev) => prev + text[currentIndex])
-            setCurrentIndex((prev) => prev + 1)
+            setDisplayText((prev) => prev + text[currentIndex]);
+            setCurrentIndex((prev) => prev + 1);
           } else {
-            setIsPaused(true)
+            setIsPaused(true);
           }
         }
       },
-      isPaused ? pauseDuration : isDeleting ? deletingSpeed : typingSpeed,
-    )
+      isPaused ? pauseDuration : isDeleting ? deletingSpeed : typingSpeed
+    );
 
-    return () => clearTimeout(timeout)
-  }, [currentIndex, text, typingSpeed, deletingSpeed, pauseDuration, isDeleting, isPaused, displayText])
+    return () => clearTimeout(timeout);
+  }, [
+    currentIndex,
+    text,
+    typingSpeed,
+    deletingSpeed,
+    pauseDuration,
+    isDeleting,
+    isPaused,
+    displayText,
+  ]);
 
-  return displayText
-}
+  return displayText;
+};
 
 // Floating Particles Component
 const FloatingParticles = () => {
@@ -209,57 +246,64 @@ const FloatingParticles = () => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
+  const [darkMode, setDarkMode] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
-  const typedText = useTypingEffect("Hi, I'm Mohd Saqib", 150, 3000, 75)
+  const typedText = useTypingEffect("Hi, I'm Mohd Saqib", 150, 3000, 75);
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add("dark")
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark")
+      document.documentElement.classList.remove("dark");
     }
-  }, [darkMode])
+  }, [darkMode]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navigationItems.map((item) => item.id)
-      const scrollPosition = window.scrollY + 100
+      const sections = navigationItems.map((item) => item.id);
+      const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
-        const element = document.getElementById(section)
+        const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
 
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(section);
+            break;
           }
         }
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-    setMobileMenuOpen(false)
-  }
+    setMobileMenuOpen(false);
+  };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "dark" : ""}`}>
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        darkMode ? "dark" : ""
+      }`}
+    >
       {/* Vertical Sidebar Navigation */}
       <nav className="fixed left-0 top-0 h-full z-50 group">
         {/* Hover trigger area - invisible but detects hover */}
@@ -271,23 +315,29 @@ export default function App() {
           <div className="w-16 h-full bg-black/20 dark:bg-black/40 backdrop-blur-md border-r border-white/10 dark:border-white/5 shadow-2xl transition-all duration-300 transform -translate-x-full group-hover:translate-x-0">
             {/* Logo/Brand */}
             <div className="p-4 border-b border-white/10 dark:border-white/5">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-sm relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-                MS
+              <div className="w-10 h-10 rounded-lg overflow-hidden">
+                <img
+                  src="https://avatars.githubusercontent.com/u/143735628?s=400&u=16d72de10ddf46caef9e4f981e663279bac3857e&v=4" // <-- Replace with your actual image path
+                  alt="Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 
             {/* Navigation Items */}
             <div className="py-6 space-y-2">
               {navigationItems.map((item) => {
-                const Icon = item.icon
-                const isActive = activeSection === item.id
+                const Icon = item.icon;
+                const isActive = activeSection === item.id;
                 return (
                   <div key={item.id} className="relative group/item">
                     <button
                       onClick={() => scrollToSection(item.id)}
-                      className={`w-full flex items-center justify-center px-4 py-3 text-left transition-all duration-300 relative ${isActive ? "text-white bg-white/20" : "text-white/70 hover:text-white hover:bg-white/10"
-                        }`}
+                      className={`w-full flex items-center justify-center px-4 py-3 text-left transition-all duration-300 relative ${
+                        isActive
+                          ? "text-white bg-white/20"
+                          : "text-white/70 hover:text-white hover:bg-white/10"
+                      }`}
                     >
                       {/* Active Indicator */}
                       {isActive && (
@@ -304,7 +354,7 @@ export default function App() {
                       <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 w-2 h-2 bg-gray-900 dark:bg-gray-700 rotate-45"></div>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
 
@@ -315,9 +365,18 @@ export default function App() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setDarkMode(!darkMode)}
-                  className="w-full justify-center p-3 hover:bg-white/10 text-white/70 hover:text-white"
+                  className={`w-full justify-center p-1 transition-colors duration-300
+    ${
+      darkMode
+        ? "bg-white text-black hover:bg-white/80"
+        : "bg-gray-900 text-white hover:bg-gray-800"
+    }`}
                 >
-                  {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                  {darkMode ? (
+                    <Sun className="h-7 w-7" />
+                  ) : (
+                    <Moon className="h-7 w-7" />
+                  )}
                 </Button>
 
                 {/* Tooltip for dark mode */}
@@ -339,7 +398,11 @@ export default function App() {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md"
         >
-          {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          {mobileMenuOpen ? (
+            <X className="h-4 w-4" />
+          ) : (
+            <Menu className="h-4 w-4" />
+          )}
         </Button>
       </div>
 
@@ -354,7 +417,7 @@ export default function App() {
             </div>
             <div className="p-4 space-y-2">
               {navigationItems.map((item) => {
-                const Icon = item.icon
+                const Icon = item.icon;
                 return (
                   <button
                     key={item.id}
@@ -364,11 +427,19 @@ export default function App() {
                     <Icon className="h-5 w-5 mr-3" />
                     {item.label}
                   </button>
-                )
+                );
               })}
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                <Button variant="ghost" onClick={() => setDarkMode(!darkMode)} className="w-full justify-start">
-                  {darkMode ? <Sun className="h-5 w-5 mr-3" /> : <Moon className="h-5 w-5 mr-3" />}
+                <Button
+                  variant="ghost"
+                  onClick={() => setDarkMode(!darkMode)}
+                  className="w-full justify-start"
+                >
+                  {darkMode ? (
+                    <Sun className="h-5 w-5 mr-3" />
+                  ) : (
+                    <Moon className="h-5 w-5 mr-3" />
+                  )}
                   {darkMode ? "Light Mode" : "Dark Mode"}
                 </Button>
               </div>
@@ -447,7 +518,7 @@ export default function App() {
               <div className="text-xl md:text-2xl mb-8 opacity-90 animate-in slide-in-from-bottom duration-1000 delay-1500">
                 <div className="relative inline-block">
                   <span className="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 bg-clip-text text-transparent font-semibold">
-                    Full Stack Developer & Tech Enthusiast
+                    Aspiring Software Developer | React & DSA Enthusiast
                   </span>
                   <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-lg blur-sm"></div>
                 </div>
@@ -455,10 +526,20 @@ export default function App() {
 
               {/* Enhanced Description */}
               <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto opacity-80 animate-in slide-in-from-bottom duration-1000 delay-2000 leading-relaxed">
-                Passionate about creating <span className="text-yellow-300 font-semibold">beautiful</span>,{" "}
-                <span className="text-green-300 font-semibold">functional</span> web applications with{" "}
-                <span className="text-blue-300 font-semibold">modern technologies</span>. I specialize in Django backend
-                development and React frontend applications.
+                Passionate about creating{" "}
+                <span className="text-yellow-300 font-semibold">beautiful</span>
+                ,{" "}
+                <span className="text-green-300 font-semibold">functional</span>{" "}
+                web interfaces with{" "}
+                <span className="text-blue-300 font-semibold">
+                  modern technologies
+                </span>
+                . I specialize in React-based frontend development and
+                continually enhance my{" "}
+                <span className="text-purple-300 font-semibold">
+                  problem-solving
+                </span>{" "}
+                skills through Java and DSA.
               </p>
 
               {/* Enhanced Action Buttons */}
@@ -486,11 +567,36 @@ export default function App() {
               {/* Social Links with Enhanced Design */}
               <div className="flex justify-center space-x-6 mt-12 animate-in slide-in-from-bottom duration-1000 delay-3000">
                 {[
-                  { icon: Github, href: "https://github.com/saqibbbbb", label: "GitHub", color: "hover:bg-gray-600" },
-                  { icon: Linkedin, href: "https://www.linkedin.com/in/mo-saqib/", label: "LinkedIn", color: "hover:bg-blue-600" },
-                  { icon: Mail, href: "mailto:mo.saqib369@gmail.com", label: "Email", color: "hover:bg-red-600" },
-                  { icon: X, href: "https://x.com/Mohd_Saqib_", label: "X", color: "hover:bg-gray-800" },
-                  { icon: Code, href: "https://leetcode.com/u/mosaqib369/", label: "Leetcode", color: "hover:bg-yellow-500"},
+                  {
+                    icon: Github,
+                    href: "https://github.com/saqibbbbb",
+                    label: "GitHub",
+                    color: "hover:bg-gray-600",
+                  },
+                  {
+                    icon: Linkedin,
+                    href: "https://www.linkedin.com/in/mo-saqib/",
+                    label: "LinkedIn",
+                    color: "hover:bg-blue-600",
+                  },
+                  {
+                    icon: Mail,
+                    href: "mailto:mo.saqib369@gmail.com",
+                    label: "Email",
+                    color: "hover:bg-red-600",
+                  },
+                  {
+                    icon: X,
+                    href: "https://x.com/Mohd_Saqib_",
+                    label: "X",
+                    color: "hover:bg-gray-800",
+                  },
+                  {
+                    icon: Code,
+                    href: "https://leetcode.com/u/mosaqib369/",
+                    label: "Leetcode",
+                    color: "hover:bg-yellow-500",
+                  },
                 ].map((social, index) => (
                   <a
                     key={social.label}
@@ -508,7 +614,9 @@ export default function App() {
             {/* Enhanced Scroll Indicator */}
             <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
               <div className="flex flex-col items-center animate-bounce">
-                <div className="text-white/70 text-sm mb-2 animate-pulse">Scroll Down</div>
+                <div className="text-white/70 text-sm mb-2 animate-pulse">
+                  Scroll Down
+                </div>
                 <ChevronDown
                   className="h-8 w-8 text-white opacity-70 cursor-pointer hover:opacity-100 transition-opacity"
                   onClick={() => scrollToSection("about")}
@@ -519,7 +627,10 @@ export default function App() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+        <section
+          id="about"
+          className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden"
+        >
           {/* Background Pattern */}
           <div className="absolute inset-0 bg-grid-gray-100/50 dark:bg-grid-gray-800/50 bg-[size:20px_20px]"></div>
 
@@ -533,8 +644,12 @@ export default function App() {
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full blur-sm"></div>
               </div>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                I'm a passionate full-stack developer with expertise in Django and React. I love creating innovative
-                solutions and learning new technologies.
+                I'm a 3rd-year B.Tech student at NSUT, Delhi (2023–2027),
+                passionate about crafting user-friendly web interfaces using
+                modern technologies like React, Tailwind CSS, and TypeScript.
+                I’ve built 10+ frontend projects and have been consistently
+                solving Data Structures & Algorithms problems for the past year
+                on platforms like LeetCode and GeeksforGeeks using Java.
               </p>
             </div>
 
@@ -544,7 +659,7 @@ export default function App() {
                   <div className="w-80 h-80 mx-auto rounded-2xl bg-gradient-to-br from-purple-400 to-blue-500 p-1 shadow-2xl relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
                     <img
-                        src="https://avatars.githubusercontent.com/u/143735628?s=400&u=16d72de10ddf46caef9e4f981e663279bac3857e&v=4"
+                      src="https://avatars.githubusercontent.com/u/143735628?s=400&u=16d72de10ddf46caef9e4f981e663279bac3857e&v=4"
                       alt="Mohd Saqib"
                       className="w-full h-full rounded-2xl object-cover"
                     />
@@ -552,13 +667,13 @@ export default function App() {
                   {/* Enhanced Floating Elements */}
                   <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg animate-bounce">
                     <div className="text-center">
-                      <div className="text-lg font-bold">3+</div>
-                      <div className="text-xs">Years</div>
+                      <div className="text-lg font-bold">400+</div>
+                      <div className="text-xs"> DSA </div>
                     </div>
                   </div>
                   <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg animate-pulse">
                     <div className="text-center">
-                      <div className="text-xl font-bold">50+</div>
+                      <div className="text-xl font-bold">6</div>
                       <div className="text-xs">Projects</div>
                     </div>
                   </div>
@@ -575,53 +690,72 @@ export default function App() {
                     <Sparkles className="absolute -top-1 -right-6 h-5 w-5 text-purple-500 animate-pulse" />
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                    Started as a curious learner, evolved into a full-stack developer passionate about creating
-                    impactful digital experiences. I specialize in Django backend development and React frontend
-                    applications.
+                    My journey began with a curiosity for how websites function.
+                    Over time, I learned HTML, CSS, JavaScript, and advanced
+                    into React and Tailwind CSS to build real-world frontend
+                    projects. In parallel, I’ve dedicated the past year to
+                    mastering Data Structures and Algorithms using Java through
+                    consistent practice on platforms like LeetCode and
+                    GeeksforGeeks. My goal is to grow as a software developer by
+                    continuously learning and building impactful projects.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-xl relative overflow-hidden group hover:scale-105 transition-transform">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">3+</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+
+                      <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                        1+
+                      </div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        Years of DSA
+                      </div>
                     </div>
                     <div className="text-center p-4 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl relative overflow-hidden group hover:scale-105 transition-transform">
                       <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-blue-500/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                      <div className="text-2xl font-bold text-green-600 dark:text-green-400">50+</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
+                      <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                        6
+                      </div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        Projects
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 <div className="space-y-6">
                   <h4 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
-                    Experience Timeline
+                    Education
                     <div className="ml-2 w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
                   </h4>
-                  {mockExperience.map((exp, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start space-x-4 animate-in slide-in-from-right duration-500 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-all group relative overflow-hidden"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                      <div className="flex-shrink-0 relative">
-                        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg relative overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-                          {exp.year}
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <h5 className="font-semibold text-gray-900 dark:text-white">{exp.title}</h5>
-                        <p className="text-purple-600 dark:text-purple-400 text-sm font-medium">{exp.company}</p>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">{exp.description}</p>
-                        <span className="inline-block mt-2 px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full text-gray-600 dark:text-gray-400">
-                          {exp.duration}
-                        </span>
+
+                  <div className="flex items-start space-x-4 animate-in slide-in-from-right duration-500 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-all group relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+
+                    <div className="flex-shrink-0 relative">
+                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                        2023
                       </div>
                     </div>
-                  ))}
+
+                    <div className="flex-1">
+                      <h5 className="font-semibold text-gray-900 dark:text-white">
+                        B.Tech in Mechanical Engineering with specialization in
+                        Electric Vehicles (MEEV)
+                      </h5>
+                      <p className="text-purple-600 dark:text-purple-400 text-sm font-medium">
+                        Netaji Subhas University of Technology, Delhi
+                      </p>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm mt-1">
+                        Currently in 3rd year, pursuing technical and software
+                        development skills alongside academic coursework.
+                      </p>
+                      <span className="inline-block mt-2 px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full text-gray-600 dark:text-gray-400">
+                        2023 – 2027
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -629,7 +763,10 @@ export default function App() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        <section
+          id="projects"
+          className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden"
+        >
           {/* Background Elements */}
           <div className="absolute inset-0">
             <div className="absolute top-20 left-20 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -646,7 +783,8 @@ export default function App() {
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full blur-sm"></div>
               </div>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                Here are some of my recent projects that showcase my skills in full-stack development
+                Here are some of my recent projects that showcase my skills in
+                Software Development
               </p>
             </div>
 
@@ -669,20 +807,34 @@ export default function App() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                          <Button
-                            size="sm"
-                            className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30 relative overflow-hidden group/btn"
+                          <a
+                            href={project.live_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-500"></div>
-                            <ExternalLink className="h-4 w-4 relative z-10" />
-                          </Button>
-                          <Button
-                            size="sm"
-                            className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30 relative overflow-hidden group/btn"
+                            <Button
+                              size="sm"
+                              className="bg-black/60 backdrop-blur-sm border-white/30 text-white hover:bg-black/70 relative overflow-hidden group/btn"
+                            >
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                              <ExternalLink className="h-4 w-4 relative z-10" />
+                            </Button>
+                          </a>
+                          <a
+                            href={project.github_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-500"></div>
-                            <Github className="h-4 w-4 relative z-10" />
-                          </Button>
+                            <Button
+                              size="sm"
+                              className="bg-black/60 backdrop-blur-sm border-white/30 text-white hover:bg-black/70 relative overflow-hidden group/btn"
+                            >
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                              <Github className="h-4 w-4 relative z-10" />
+                            </Button>
+                          </a>
                         </div>
                         <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                           <Badge className="bg-gradient-to-r from-purple-500 to-blue-500 text-white border-0 relative overflow-hidden">
@@ -719,7 +871,7 @@ export default function App() {
             </div>
 
             {/* Other Projects Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+            {/* <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
               {mockProjects
                 .filter((p) => !p.featured)
                 .map((project, index) => (
@@ -738,16 +890,26 @@ export default function App() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <div className="absolute top-3 right-3 flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <Button size="sm" variant="secondary" className="p-1.5 h-auto">
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            className="p-1.5 h-auto"
+                          >
                             <ExternalLink className="h-3 w-3" />
                           </Button>
-                          <Button size="sm" variant="secondary" className="p-1.5 h-auto">
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            className="p-1.5 h-auto"
+                          >
                             <Github className="h-3 w-3" />
                           </Button>
                         </div>
                       </div>
                       <CardHeader className="pb-2">
-                        <CardTitle className="text-lg text-gray-900 dark:text-white">{project.title}</CardTitle>
+                        <CardTitle className="text-lg text-gray-900 dark:text-white">
+                          {project.title}
+                        </CardTitle>
                         <CardDescription className="text-sm text-gray-600 dark:text-gray-300">
                           {project.description}
                         </CardDescription>
@@ -773,12 +935,15 @@ export default function App() {
                     </Card>
                   </div>
                 ))}
-            </div>
+            </div> */}
           </div>
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+        <section
+          id="skills"
+          className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden"
+        >
           {/* Background Pattern */}
           <div className="absolute inset-0 bg-grid-gray-100/50 dark:bg-grid-gray-800/50 bg-[size:30px_30px]"></div>
 
@@ -792,65 +957,89 @@ export default function App() {
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full blur-sm"></div>
               </div>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                My technical expertise spans across various technologies and frameworks
+                My technical expertise spans across various technologies and
+                frameworks
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {Object.entries(mockSkills).map(([category, skills], categoryIndex) => (
-                <div
-                  key={category}
-                  className="animate-in slide-in-from-bottom duration-1000"
-                  style={{ animationDelay: `${categoryIndex * 200}ms` }}
-                >
-                  <Card className="h-full bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                    <CardHeader className="text-center pb-4">
-                      <CardTitle className="capitalize text-gray-900 dark:text-white text-xl flex items-center justify-center">
-                        {category}
-                        <div className="ml-2 w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
-                      </CardTitle>
-                      <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto relative">
-                        <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full blur-sm"></div>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      {skills.map((skill, index) => (
-                        <div
-                          key={skill.name}
-                          className="space-y-3 animate-in slide-in-from-left duration-500 group/skill"
-                          style={{ animationDelay: `${categoryIndex * 200 + index * 100}ms` }}
-                        >
-                          <div className="flex justify-between items-center">
-                            <div className="flex items-center space-x-2">
-                              <span className="text-lg animate-bounce" style={{ animationDelay: `${index * 200}ms` }}>
-                                {skill.icon}
-                              </span>
-                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
-                            </div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400 font-semibold">
-                              {skill.level}%
-                            </span>
-                          </div>
-                          <div className="relative">
-                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                              <div
-                                className="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full transition-all duration-1000 ease-out relative overflow-hidden"
-                                style={{
-                                  width: `${skill.level}%`,
-                                  animationDelay: `${categoryIndex * 200 + index * 100 + 500}ms`,
-                                }}
-                              >
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
+              {/* Frontend */}
+              <div className="animate-in slide-in-from-bottom duration-1000">
+                <Card className="h-full bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                  <CardHeader className="text-center pb-4">
+                    <CardTitle className="text-gray-900 dark:text-white text-xl flex items-center justify-center">
+                      Frontend
+                      <div className="ml-2 w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
+                    </CardTitle>
+                    <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full blur-sm"></div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-center text-gray-700 dark:text-gray-300">
+                    <div>React.js</div>
+                    <div>Tailwind CSS</div>
+                    <div>TypeScript</div>
+                    <div>JavaScript (ES6+)</div>
+                    <div>HTML5 & CSS3</div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Programming & DSA */}
+              <div
+                className="animate-in slide-in-from-bottom duration-1000"
+                style={{ animationDelay: "200ms" }}
+              >
+                <Card className="h-full bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                  <CardHeader className="text-center pb-4">
+                    <CardTitle className="text-gray-900 dark:text-white text-xl flex items-center justify-center">
+                      Programming & DSA
+                      <div className="ml-2 w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
+                    </CardTitle>
+                    <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full blur-sm"></div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-center text-gray-700 dark:text-gray-300">
+                    <div>Java (DSA)</div>
+                    <div>C++ / C</div>
+                    <div>SQL</div>
+                    <div>Object-Oriented Programming (OOPs)</div>
+                    <div>Data Structures & Algorithms</div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Tools & Others */}
+              <div
+                className="animate-in slide-in-from-bottom duration-1000"
+                style={{ animationDelay: "400ms" }}
+              >
+                <Card className="h-full bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 border-0 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                  <CardHeader className="text-center pb-4">
+                    <CardTitle className="text-gray-900 dark:text-white text-xl flex items-center justify-center">
+                      Tools & Others
+                      <div className="ml-2 w-2 h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full animate-pulse"></div>
+                    </CardTitle>
+                    <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto relative">
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full blur-sm"></div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-center text-gray-700 dark:text-gray-300">
+                    <div>Git & GitHub</div>
+                    <div>DBMS</div>
+                    <div>REST APIs</div>
+                    <div>Operating Systems</div>
+                    <div>OpenAI API / Generative AI</div>
+                    <div>Netlify</div>
+                    <div>NLP</div>
+                    <div>Soft Skills: Communication, Leadership</div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
@@ -882,7 +1071,8 @@ export default function App() {
                 <div className="absolute inset-0 bg-white/50 rounded-full blur-sm"></div>
               </div>
               <p className="text-lg text-white/90 max-w-3xl mx-auto">
-                I'm always open to discussing new opportunities and interesting projects
+                I'm always open to discussing new opportunities and interesting
+                projects
               </p>
             </div>
 
@@ -920,9 +1110,24 @@ export default function App() {
                   </h4>
                   <div className="flex space-x-4">
                     {[
-                      { icon: Github, href: "https://github.com/saqibbbbb", label: "GitHub", color: "hover:bg-gray-600" },
-                      { icon: Linkedin, href: "https://www.linkedin.com/in/mo-saqib/", label: "LinkedIn", color: "hover:bg-blue-600" },
-                      { icon: Mail, href: "mailto:mo.saqib369@gmail.com", label: "Email", color: "hover:bg-red-600" },
+                      {
+                        icon: Github,
+                        href: "https://github.com/saqibbbbb",
+                        label: "GitHub",
+                        color: "hover:bg-gray-600",
+                      },
+                      {
+                        icon: Linkedin,
+                        href: "https://www.linkedin.com/in/mo-saqib/",
+                        label: "LinkedIn",
+                        color: "hover:bg-blue-600",
+                      },
+                      {
+                        icon: Mail,
+                        href: "mailto:mo.saqib369@gmail.com",
+                        label: "Email",
+                        color: "hover:bg-red-600",
+                      },
                     ].map((social, index) => (
                       <a
                         key={social.label}
@@ -996,7 +1201,9 @@ export default function App() {
                   Mohd Saqib
                   <div className="absolute -top-1 -right-4 w-2 h-2 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full animate-pulse"></div>
                 </h3>
-                <p className="text-gray-400 mt-2">Full Stack Developer & Tech Enthusiast</p>
+                <p className="text-gray-400 mt-2">
+                  Software Developer & Tech Enthusiast
+                </p>
               </div>
 
               <div className="flex justify-center space-x-6 mb-8">
@@ -1016,13 +1223,17 @@ export default function App() {
               </div>
 
               <div className="border-t border-gray-800 pt-8">
-                <p className="text-gray-400">&copy; 2024 Mohd Saqib. All rights reserved.</p>
-                <p className="mt-2 text-sm text-gray-500">Built with React, Vite, and Tailwind CSS</p>
+                <p className="text-gray-400">
+                  &copy; 2025 Mohd Saqib. All rights reserved.
+                </p>
+                <p className="mt-2 text-sm text-gray-500">
+                  Built with React, Vite, and Tailwind CSS
+                </p>
               </div>
             </div>
           </div>
         </footer>
       </div>
     </div>
-  )
+  );
 }
