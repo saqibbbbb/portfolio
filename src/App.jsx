@@ -50,7 +50,7 @@ const LeetCodeIcon = () => (
 
 // Mock data (in real app, this would come from Django API)
 import tourBuilderImg from "./assets/tourbuilder.png";
-import mediFlowImg from "./assets/mediflow.png";
+import mediFlowImg from "./assets/Mediflow.png";
 import quizImg from "./assets/quiz.png";
 import ideaForgeImg from "./assets/ideaforge.png";
 
